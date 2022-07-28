@@ -1,52 +1,52 @@
-import React from 'react';
-import { Formik } from 'formik';
+import * as React from 'react';
+import { Formik, Field, Form, FormikHelpers } from 'formik';
 
-const Basic = () => (
-  <div>
-    <h1>Anywhere in your app!</h1>
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-        /* and other goodies */
-      }) => (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
+interface Values {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+const App = () => {
+  return (
+    <div>
+      <h1>Signup</h1>
+      <Formik
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+        }}
+        onSubmit={(
+          values: Values,
+          { setSubmitting }: FormikHelpers<Values>
+        ) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 500);
+        }}
+      >
+        <Form>
+          <label htmlFor="firstName">First Name</label>
+          <Field id="firstName" name="firstName" placeholder="John" />
+
+          <label htmlFor="lastName">Last Name</label>
+          <Field id="lastName" name="lastName" placeholder="Doe" />
+
+          <label htmlFor="email">Email</label>
+          <Field
+            id="email"
             name="email"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.email}
+            placeholder="john@acme.com"
+            type="email"
           />
-          {errors.email && touched.email && errors.email}
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.password}
-          />
-          {errors.password && touched.password && errors.password}
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-        </form>
-      )}
-    </Formik>
-  </div>
-);
 
-export default Basic;
+          <button type="submit">Submit</button>
+        </Form>
+      </Formik>
+    </div>
+  );
+};
+
+export default App;

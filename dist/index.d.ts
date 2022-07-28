@@ -1,3 +1,3 @@
-import React from "react";
-declare var MyApp: () => React.DetailedReactHTMLElement<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-export default MyApp;
+import * as React from 'react';
+declare var App: () => React.DetailedReactHTMLElement<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+export default App;
