@@ -49,4 +49,9 @@ const App = () => {
   );
 };
 
-export default App;
+export default {
+  App,
+  Formik,
+  Field,
+  Form
+};
