@@ -23,6 +23,7 @@ module.exports = ({ development }) => ({
         rules : [
             {
                 test: /\.(ts|js|jsx|tsx)$/,
+                exclude: /node_modules/,
                 use: [
                     'ts-loader',
                     {
